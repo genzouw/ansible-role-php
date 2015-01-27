@@ -1,0 +1,36 @@
+- name: Intall yum packages.
+  yum: name={{ item }} state=present enablerepo=remi
+  with_items:
+    - gd-last
+    - graphviz
+    - graphviz-gd
+
+- name: Enable mbstring.
+  lineinfile:
+    dest: /etc/php.ini
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - regexp: '^ *;* *mbstring.language = .*'
+      line: 'mbstring.language = Japanese'
+    - regexp: '^ *;* *mbstring.internal_encoding = .*'
+      line: 'mbstring.internal_encoding = UTF-8'
+    - regexp: '^ *;* *mbstring.http_input = .*'
+      line: 'mbstring.http_input = auto'
+    - regexp: '^ *;* *mbstring.http_output = .*'
+      line: 'mbstring.http_output = UTF-8'
+
+- name: Enable opcache.
+  lineinfile:
+    dest: /etc/php.d/10-opcache.ini
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - regexp: '^ *;\? *opcache.fast_shutdown *= *.*'
+      line: 'opcache.fast_shutdown=1'
+    - regexp: '^ *;\? *opcache.enable_cli *= *.*'
+      line: 'opcache.enable_cli=1'
+    - regexp: '^ *;\? *opcache.revalidate_freq *= *.*'
+      line: 'opcache.revalidate_freq=5'
+
+- service: name=httpd enabled=yes state=restarted
