@@ -11,14 +11,18 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   with_items:
-    - regexp: '^ *;* *mbstring.language = .*'
+    - regexp: '^ *;* *mbstring.language *=.*'
       line: 'mbstring.language = Japanese'
-    - regexp: '^ *;* *mbstring.internal_encoding = .*'
+    - regexp: '^ *;* *mbstring.internal_encoding *=.*'
       line: 'mbstring.internal_encoding = UTF-8'
-    - regexp: '^ *;* *mbstring.http_input = .*'
+    - regexp: '^ *;* *mbstring.http_input *=.*'
       line: 'mbstring.http_input = auto'
-    - regexp: '^ *;* *mbstring.http_output = .*'
+    - regexp: '^ *;* *mbstring.http_output *=.*'
       line: 'mbstring.http_output = UTF-8'
+    - regexp: '^ *;* *session.cookie_httponly *=.*'
+      line: 'session.cookie_httponly = true'
+    - regexp: '^ *;* *magic_quotes_gpc *=.*'
+      line: 'magic_quotes_gpc = Off'
 
 - name: Enable opcache.
   lineinfile:
