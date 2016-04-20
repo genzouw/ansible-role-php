@@ -1,7 +1,6 @@
 ---
 dependencies:
   - role: genzouw.repos-for-centos
-  - role: geerlingguy.php
 
 galaxy_info:
   author: genzouw

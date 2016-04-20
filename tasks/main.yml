@@ -5,6 +5,21 @@
     - graphviz
     - graphviz-gd
 
+- name: Intall yum packages.
+  yum: name={{ item }} state=present enablerepo=remi-php56
+  with_items:
+    - php
+    - php-cli
+    - php-common
+    - php-devel
+    - php-gd
+    - php-mbstring
+    - php-mcrypt
+    - php-mysql
+    - php-opcache
+    - php-pdo
+    - php-pgsql
+
 - name: Enable mbstring.
   lineinfile:
     dest: /etc/php.ini
@@ -38,3 +53,13 @@
       line: 'opcache.revalidate_freq=5'
 
 - service: name=httpd enabled=yes state=restarted
+
+- name: Install composer.
+  shell: php -r "readfile('https://getcomposer.org/installer');" | php
+  args:
+    chdir: /usr/local/bin
+- file:
+    src: /usr/local/bin/composer.phar
+    dest: /usr/local/bin/composer
+    state: link
+- file: path=/usr/local/bin/composer.phar state=file mode=755
