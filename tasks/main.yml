@@ -19,6 +19,7 @@
     - php-opcache
     - php-pdo
     - php-pgsql
+    - php-dom
 
 - name: Enable mbstring.
   lineinfile:
