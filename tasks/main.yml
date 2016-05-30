@@ -6,20 +6,8 @@
     - graphviz-gd
 
 - name: Intall yum packages.
-  yum: name={{ item }} state=present enablerepo=remi-php56
-  with_items:
-    - php
-    - php-cli
-    - php-common
-    - php-devel
-    - php-gd
-    - php-mbstring
-    - php-mcrypt
-    - php-mysql
-    - php-opcache
-    - php-pdo
-    - php-pgsql
-    - php-dom
+  yum: name={{ item }} state=present enablerepo="{{ php_enablerepo }}"
+  with_items: "{{ php_packages }}"
 
 - name: Enable mbstring.
   lineinfile:
@@ -27,6 +15,8 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   with_items:
+    - regexp: '^ *;* *date.timezone *=.*'
+      line: 'date.timezone = Asia/Tokyo'
     - regexp: '^ *;* *mbstring.language *=.*'
       line: 'mbstring.language = Japanese'
     - regexp: '^ *;* *mbstring.internal_encoding *=.*'

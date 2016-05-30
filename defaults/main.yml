@@ -6,13 +6,14 @@ php_packages:
   - php-common
   - php-devel
   - php-gd
-  - php-imap
+  - php-dom
   - php-json
   - php-ldap
   - php-mbstring
   - php-mcrypt
   - php-mysql
   - php-mysqlnd
+  - php-pgsql
   - php-opcache
   - php-pdo
   - php-pear
