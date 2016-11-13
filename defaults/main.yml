@@ -5,21 +5,22 @@ php_packages:
   - php-cli
   - php-common
   - php-devel
-  - php-gd
   - php-dom
+  - php-gd
+  - php-intl
   - php-json
   - php-ldap
   - php-mbstring
   - php-mcrypt
   - php-mysql
   - php-mysqlnd
-  - php-pgsql
   - php-opcache
   - php-pdo
   - php-pear
   - php-pecl-ssh2
   - php-pecl-xdebug
   - php-pecl-xhprof
+  - php-pgsql
   - php-xml
   - php-xmlrpc
   - php-xsl
