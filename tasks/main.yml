@@ -1,12 +1,12 @@
 - name: Intall yum packages.
-  yum: name={{ item }} state=present enablerepo=remi
+  yum: name={{ item }} state=latest enablerepo="{{ php_enablerepo }}"
   with_items:
     - gd-last
     - graphviz
     - graphviz-gd
 
 - name: Intall yum packages.
-  yum: name={{ item }} state=present enablerepo="{{ php_enablerepo }}"
+  yum: name={{ item }} state=latest enablerepo="{{ php_enablerepo }}"
   with_items: "{{ php_packages }}"
 
 - name: Enable mbstring.

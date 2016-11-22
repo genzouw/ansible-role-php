@@ -1,5 +1,5 @@
 ---
-php_enablerepo: "remi-php56,remi"
+php_enablerepo: "remi-php71,remi"
 php_packages:
   - php
   - php-cli
@@ -9,17 +9,12 @@ php_packages:
   - php-gd
   - php-intl
   - php-json
-  - php-ldap
   - php-mbstring
   - php-mcrypt
-  - php-mysql
   - php-mysqlnd
   - php-opcache
   - php-pdo
   - php-pear
-  - php-pecl-ssh2
-  - php-pecl-xdebug
-  - php-pecl-xhprof
   - php-pgsql
   - php-xml
   - php-xmlrpc
